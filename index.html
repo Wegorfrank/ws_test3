@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>WebSocket Example</title>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+</head>
+
+<body>
+    <h1>WebSocket Example</h1>
+    <div id="messages"></div>
+
+    <script>
+        const socket = new WebSocket('ws://wegorfrank01.5gzvip.91tunnel.com/ws');
+
+        // socket.onmessage = function (event) {
+        //     console.log('Received message from server:', event.data);
+        //     document.getElementById('messages').innerHTML += '<p>' + event.data + '</p>';
+        // };
+        socket.addEventListener("message", function (event) {
+            console.log('Received message from server:', event.data);
+            document.getElementById('messages').innerHTML += '<p>' + event.data + '</p>';
+            console.log(JSON.parse(event.data));
+        })
+        // 连接开启是一个事件,是异步的
+        socket.addEventListener("open", function () {
+            console.log("连接开启");
+        })
+        console.log("主程序结束");
+        socket.send("js发过来的消息")
+    </script>
+</body>
+
+</html>
